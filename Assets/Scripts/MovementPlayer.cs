@@ -55,7 +55,7 @@ public class MovementPlayer : MonoBehaviour
 
     private void UpdateMoveSpeed()
     {
-        moveSpeed = Mathf.Sqrt(moveSpeed);
+        moveSpeed = Mathf.Sqrt(moveSpeed*3);
     }
     public void Steer()
     {   /*

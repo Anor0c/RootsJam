@@ -9,7 +9,7 @@ public class GroundGeneration : MonoBehaviour
     public GameObject[] ground3Array;
 
     float currentxPos;
-    float tileSize=2.5f;
+    [SerializeField] float tileSize;
 
     private void Start()
     {

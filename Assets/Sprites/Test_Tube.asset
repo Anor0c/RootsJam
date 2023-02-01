@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Test_Tube
   m_EditorClassIdentifier: 
   m_Angles:
-  - m_Start: -180
-    m_End: 180
+  - m_Start: -70
+    m_End: 62
     m_Order: 0
     m_Sprites:
     - {fileID: 6048403277641295904, guid: 8ed66fcac55a0004082c77c7b5d458f8, type: 3}

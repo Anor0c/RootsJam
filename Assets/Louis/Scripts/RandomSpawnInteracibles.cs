@@ -1,31 +1,22 @@
-/*using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomSpawnInteracibles : MonoBehaviour
-/*{
-    /*public GameObject[] InteractiblesArray1;
-    public GameObject[] InteractiblesArray2;
-    public GameObject[] InteractiblesArray3;
+{
+    public GameObject[] interractibleArray;
+
+    public int minDepth = 0;
+    public int maxDepth = 5;
+    public int biomeNumberInScene=20;
+
+    Vector3 spawnedPos;
 
     void Start()
     {
-        
-     /*logique pour faire spawn les objtes de maniere random dans une strate 
-      il faudrait du coup définir une strate= public gameobject strate?
-     pb: comment je lui definie l'aire de ma strate, si les frontieres sont random?
-
-     puis algo pour random spawn dans la strate= je sais pas mais je me soigne*
-
-     algo = simple random walk? t'a un agent qui se balade dans la strate dans les 4 dir cardinales et tous les x deplacement il spawn un interactible?
-     risque d'etre chient en terme de si c pas trop rigide
-
-     et la normalement on est gucci*/ 
-       /* 
-        for (int i = 0; i < 20; i++)
+                
+        for (int i = 0; i < biomeNumberInScene; i++)
         {
-
-            Instantiate(InteractiblesArray1[ArrayChoice()])
+            spawnedPos = RandomPos();
+            Instantiate(interractibleArray[ArrayChoice()], spawnedPos, Quaternion.identity);
         }
     }
     int ArrayChoice()
@@ -42,4 +33,13 @@ public class RandomSpawnInteracibles : MonoBehaviour
         }
         return arrayChoice;
     }
-}*/
+    Vector3 RandomPos()
+    {
+        Vector3 randomPos;
+        float randomX = Random.Range(minDepth, maxDepth);
+        float randomY = Random.Range(minDepth, maxDepth);
+        randomPos = new Vector3( -randomX, -randomY, 0f);
+
+        return randomPos;
+    }
+}

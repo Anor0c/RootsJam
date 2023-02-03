@@ -6,6 +6,8 @@ public class RandomSpawnInteracibles : MonoBehaviour
 
     public int minDepth = 0;
     public int maxDepth = 5;
+    public int minWidth = -20;
+    public int maxWidth = 20;
     public int biomeNumberInScene=20;
 
     Vector3 spawnedPos;
@@ -22,21 +24,15 @@ public class RandomSpawnInteracibles : MonoBehaviour
     int ArrayChoice()
     {
         int arrayChoice = 0;
-        int spawnRate = Random.Range(0, 99);
-        if (spawnRate < 50)
-        {
-            arrayChoice = 0;
-        }
-        else
-        {
-            arrayChoice = 1;
-        }
+        int spawnRate = Random.Range(0, interractibleArray.Length);
+        arrayChoice = spawnRate;
+
         return arrayChoice;
     }
     Vector3 RandomPos()
     {
         Vector3 randomPos;
-        float randomX = Random.Range(minDepth, maxDepth);
+        float randomX = Random.Range(minWidth, maxWidth);
         float randomY = Random.Range(minDepth, maxDepth);
         randomPos = new Vector3( -randomX, -randomY, 0f);
 

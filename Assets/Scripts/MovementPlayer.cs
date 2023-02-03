@@ -1,32 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.U2D;
 using UnityEngine.InputSystem;
 
 public class MovementPlayer : MonoBehaviour
 {
     public Rigidbody2D rb2D;
-    [SerializeField] float moveSpeed;
-    [SerializeField] float turnSpeed;
+    public float moveSpeed;
+    public float turnSpeed;
     public Vector2 mousePosition;
-    
+
     Vector2 direction;
 
     bool isMoving = false;
-    float totalDistance;
+    float troncondistance;
+
     [SerializeField] float maxDistancePerPoint;
+    private TestSpline splineRef;
 
-
-
-    
-    
+    //FogOfWar
+    public FogOfWar fogOfWar;
+    public Transform secondaryFogOfWar;
+    [Range(0, 5)]
+    public float sightDistance;
+    public float checkInterval;
 
     // Start is called before the first frame update
     void Start()
     {
         UpdateMoveSpeed();
-        
+        splineRef = GetComponentInParent<TestSpline>();
+        StartCoroutine(CheckFogOfWar(checkInterval));
+        secondaryFogOfWar.localScale = new Vector2(sightDistance, sightDistance) * 10f;
     }
 
     // Update is called once per frame
@@ -47,14 +54,14 @@ public class MovementPlayer : MonoBehaviour
         float angle = Vector2.SignedAngle(Vector2.right, direction);
         Vector3 targetRotation = new Vector3(0, 0, angle);
         rb2D.MoveRotation(Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), turnSpeed * Time.fixedDeltaTime));
-        
+
         rb2D.velocity = transform.right * moveSpeed;
-        GetComponentInParent<TestSpline>().MoveLastPoint(rb2D.position);
-        totalDistance += rb2D.velocity.magnitude * Time.fixedDeltaTime;
-        if (totalDistance > maxDistancePerPoint)
+        splineRef.MoveLastPoint(rb2D.position);
+        troncondistance += rb2D.velocity.magnitude * Time.fixedDeltaTime;
+        if (troncondistance > maxDistancePerPoint)
         {
-            GetComponentInParent<TestSpline>().DistanceMet(rb2D.position);
-            totalDistance = 0;
+            splineRef.DistanceMet(rb2D.position);
+            troncondistance = 0;
         }
 
 
@@ -64,7 +71,7 @@ public class MovementPlayer : MonoBehaviour
 
     private void UpdateMoveSpeed()
     {
-        moveSpeed = Mathf.Sqrt(moveSpeed*3);
+        moveSpeed = Mathf.Sqrt(moveSpeed * 3);
     }
 
     public void StartMoving()
@@ -72,5 +79,29 @@ public class MovementPlayer : MonoBehaviour
         isMoving = true;
     }
 
-   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "water")
+        {
+            //splineRef.pointLimit += 2
+            // lumière ?
+        }
+        if (collision.tag == "mushrooms")
+        {
+            //fogofwar += 1
+        }
+        if (collision.tag == "azote")
+        {
+            // turnspeed += 10
+        }
+    }
+
+    private IEnumerator CheckFogOfWar(float checkInterval)
+    {
+        while (true)
+        {
+            fogOfWar.MakeHole(transform.position, sightDistance);
+            yield return new WaitForSeconds(checkInterval);
+        }
+    }
 }

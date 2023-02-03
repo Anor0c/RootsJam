@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1247055580102557553}
+  - component: {fileID: 576780721}
   m_Layer: 0
   m_Name: GroundGenerator
   m_TagString: Untagged
@@ -30,3 +31,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &576780721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2295608832005229778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5c05873890c394d949491f627653a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ground1Array:
+  - {fileID: 8773397115697478480, guid: f10de08e55d14484bb5636e11ce2b48e, type: 3}
+  - {fileID: 4758243811837387989, guid: 58250b3e47eda9e469a3348125b01a39, type: 3}
+  ground2Array:
+  - {fileID: 7142013281759508934, guid: ca293c541ffed654bb17d475e95c9fca, type: 3}
+  - {fileID: 7142013281759508934, guid: 3f27987eac7adfb4a82ca6a9ca5b2ffc, type: 3}
+  - {fileID: 7142013281759508934, guid: bd72797780824e648bb1004c06030186, type: 3}
+  ground3Array:
+  - {fileID: 6083772174303098893, guid: 47cc46dcbcbb9fd46a0aa994c9f02b9b, type: 3}
+  - {fileID: 6083772174303098893, guid: 5e87c60a1e7348d46ace600189fc99ec, type: 3}
+  - {fileID: 6083772174303098893, guid: 76bc87745322b924ba873e83bed6cc38, type: 3}

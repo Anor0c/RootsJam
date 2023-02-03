@@ -1,18 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class StrateFrontierRandomHeight : MonoBehaviour
 {
+    [SerializeField] Spline strate;
+    public int pointNumber=5;
+    public float minDepth=5.5f;
+    public float minTangent=-5f;
+
+    public float maxDepth=9.5f;
+    public float maxTangent=5f;
+
+
+    float randomDepthDown = 5f;
+    float randomTangent = 0f;
+
+    private void Awake()
+    {
+        strate = GetComponentInParent<SpriteShapeController>().spline;
+    }
     void Start()
     {
-        /*Définir des points sur le coté bas de la strate 1, chaque point equidistant du point avant et apres 
-         dire au points de se placer : for each point in pointarray
-        pos.y =random.range(hauteur minimm,hauteur maximum maximum)
-        relier les points 
-        dire que la forme créée est un masque dans lequel on peut voir la texture de la strate 1
+        //gere les points a la base en bas
+        randomDepthDown = Random.Range(-minDepth, -maxDepth);
+        strate.SetPosition(0, new Vector3(strate.GetPosition(0).x, randomDepthDown, 0));
+        randomDepthDown = Random.Range(-minDepth, -maxDepth);
+        strate.SetPosition(3, new Vector3(strate.GetPosition(3).x, randomDepthDown, 0));
 
-        faire de meme pour les strate 2 et 3? pas sur, ca parait pas opti
-         */
+
+        for (int i = 0; i < pointNumber; i++)
+        {
+            //gere les points en dessous générés au start
+            randomDepthDown = Random.Range(-minDepth, -maxDepth);
+            randomTangent = Random.Range(minTangent, maxTangent);
+
+            strate.InsertPointAt(4+i,new Vector3(14-i*5, randomDepthDown, 0));
+            strate.SetTangentMode(4+i, ShapeTangentMode.Continuous);
+            strate.SetRightTangent(4+i, new Vector3(-3, randomTangent, 0));
+            strate.SetLeftTangent(4+i, new Vector3(3, -randomTangent, 0));
+
+        }
+
     }
 }

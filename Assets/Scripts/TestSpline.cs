@@ -38,7 +38,7 @@ public class TestSpline : MonoBehaviour
             StartCoroutine(DistanceMetCoroutine(newPosition));
             IEnumerator DistanceMetCoroutine(Vector3 newPosition)
             {
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.08f);
                 Debug.Log($"Count : {lastPoint}, position :{newPosition}");
                 targetSpline.InsertPointAt(lastPoint, newPosition);
             }
@@ -64,7 +64,8 @@ public class TestSpline : MonoBehaviour
 
 
     private void Death()
-    {   
+    {
+        Debug.Log("Camarche");
         //activate death Head
         //DestroyLivingHead
         //ChangeColor

@@ -8,8 +8,8 @@ using UnityEngine.InputSystem;
 public class MovementPlayer : MonoBehaviour
 {
     public Rigidbody2D rb2D;
-    public float moveSpeed;
-    public float turnSpeed;
+    //public float moveSpeed;
+    //public float turnSpeed;
     public Vector2 mousePosition;
 
     Vector2 direction;
@@ -26,11 +26,16 @@ public class MovementPlayer : MonoBehaviour
     [Range(0, 5)]
     public float sightDistance;
     public float checkInterval;
+    public RootData datar;
 
+    private void Awake()
+    {
+        sightDistance = datar.currentSightDistance;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        UpdateMoveSpeed();
+        //UpdateMoveSpeed();
         splineRef = GetComponentInParent<TestSpline>();
         StartCoroutine(CheckFogOfWar(checkInterval));
         secondaryFogOfWar.localScale = new Vector2(sightDistance, sightDistance) * 10f;
@@ -53,9 +58,9 @@ public class MovementPlayer : MonoBehaviour
         //RB2D move and rotate
         float angle = Vector2.SignedAngle(Vector2.right, direction);
         Vector3 targetRotation = new Vector3(0, 0, angle);
-        rb2D.MoveRotation(Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), turnSpeed * Time.fixedDeltaTime));
+        rb2D.MoveRotation(Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), datar.currentTurnSpeed * Time.fixedDeltaTime));
 
-        rb2D.velocity = transform.right * moveSpeed;
+        rb2D.velocity = transform.right * datar.currentSpeed;
         splineRef.MoveLastPoint(rb2D.position);
         troncondistance += rb2D.velocity.magnitude * Time.fixedDeltaTime;
         if (troncondistance > maxDistancePerPoint)
@@ -69,10 +74,10 @@ public class MovementPlayer : MonoBehaviour
 
     }
 
-    private void UpdateMoveSpeed()
+    /*private void UpdateMoveSpeed()
     {
-        moveSpeed = Mathf.Sqrt(moveSpeed * 3);
-    }
+        datar.currentSpeed = Mathf.Sqrt(datar.currentSpeed * 3);
+    }*/
 
     public void StartMoving()
     {
@@ -83,16 +88,19 @@ public class MovementPlayer : MonoBehaviour
     {
         if (collision.tag == "water")
         {
-            //splineRef.pointLimit += 2
-            // lumière ?
+            datar.currentPointLimit += 2;
+            datar.currentRessource += 1;
+            //collision.GetComponent<SpriteRenderer>().maskInteraction;
         }
         if (collision.tag == "mushrooms")
         {
-            //fogofwar += 1
+            datar.currentSightDistance += 0.5f;
+            datar.currentRessource += 1;
         }
         if (collision.tag == "azote")
         {
-            // turnspeed += 10
+            datar.currentTurnSpeed += 2f;
+            datar.currentRessource += 1;
         }
     }
 
@@ -100,8 +108,13 @@ public class MovementPlayer : MonoBehaviour
     {
         while (true)
         {
-            fogOfWar.MakeHole(transform.position, sightDistance);
+            fogOfWar.MakeHole(transform.position, datar.currentSightDistance);
             yield return new WaitForSeconds(checkInterval);
         }
+    }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -5,32 +5,16 @@ using UnityEngine.Events;
 
 public class PointManager : MonoBehaviour
 {
-    [SerializeField] int pointMultiplier;
     int totalPoints;
-    int finalDistance;
-    // Start is called before the first frame update
-    void Start()
+    int totalResources;
+    public RootData datar;
+    
+    public void PointAddition()
     {
-        
+        totalPoints += datar.currentPointLimit;
+        datar.currentFinalDistance = totalPoints * datar.currentSegmentDistance;
+        totalResources = datar.currentRessource;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    //récupérer la true total distance
-    // et l'ajouter à la distance final.
-
     
-    
-    
-    public void PointAddition(int currentRootPoint)
-    {
-        totalPoints += currentRootPoint;
-        finalDistance = totalPoints * pointMultiplier;
-    }
-
-    //public void OnGameOver
 }

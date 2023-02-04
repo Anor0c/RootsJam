@@ -15,14 +15,18 @@ public class TestSpline : MonoBehaviour
 
     float truetotaldistance;
     bool isDead = false;
-    public int PointLimit;
-    int PointGenerated;
-    public UnityEvent<int> OnDeath;
+    //public int pointLimit;
+    int pointGenerated;
+    //public GameObject currentRoot;
+    public UnityEvent OnDeath;
+    
+    public RootData datar;
     void Start()
     {
-        PointGenerated = 0;
+        pointGenerated = 0;
         var SplineController = GetComponent<SpriteShapeController>();
         targetSpline = SplineController.spline;
+        targetSpline.SetTangentMode(1, ShapeTangentMode.Continuous);
     }
 
     // Update is called once per frame
@@ -41,9 +45,10 @@ public class TestSpline : MonoBehaviour
                 yield return new WaitForSeconds(0.08f);
                 Debug.Log($"Count : {lastPoint}, position :{newPosition}");
                 targetSpline.InsertPointAt(lastPoint, newPosition);
+                targetSpline.SetTangentMode(lastFixedPoint, ShapeTangentMode.Continuous);
             }
-            PointGenerated += 1;
-            if (PointGenerated == PointLimit)
+            pointGenerated += 1;
+            if (pointGenerated == datar.currentPointLimit)
             {
                 isDead = true;
             }
@@ -62,7 +67,10 @@ public class TestSpline : MonoBehaviour
         targetSpline.SetPosition(lastPoint, newPosition);
     }
 
-
+    private void OnDestroy()
+    {
+        
+    }
     private void Death()
     {
         Debug.Log("Camarche");
@@ -70,7 +78,10 @@ public class TestSpline : MonoBehaviour
         //DestroyLivingHead
         //ChangeColor
         //Spawn
-        OnDeath.Invoke(PointLimit);
+        //targetSpline.Clear();
+        OnDeath.Invoke();
+        
+
     }
     /*public void AddDistance(float distanceToAdd)
     {

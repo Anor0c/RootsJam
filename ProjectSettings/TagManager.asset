@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - AntiOverlap
+  - RootHeadLive
+  - RootHeadDead
   layers:
   - Default
   - TransparentFX

@@ -37,10 +37,4 @@ public class RootData : ScriptableObject
     public int SegmentDistance;
     public int finalDistance;
     [HideInInspector] public int currentFinalDistance;
-
-
-
-
-
-
 }

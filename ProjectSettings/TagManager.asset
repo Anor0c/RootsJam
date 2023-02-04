@@ -7,6 +7,9 @@ TagManager:
   - AntiOverlap
   - RootHeadLive
   - RootHeadDead
+  - azote
+  - mushrooms
+  - water
   layers:
   - Default
   - TransparentFX

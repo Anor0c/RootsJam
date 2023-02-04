@@ -90,6 +90,7 @@ public class MovementPlayer : MonoBehaviour
         {
             datar.currentPointLimit += 2;
             datar.currentRessource += 1;
+            Debug.Log("c2lo");
             fogOfWar.MakeHole(collision.gameObject.transform.position, datar.currentSightDistance);
             //collision.GetComponent<SpriteRenderer>().maskInteraction;
         }

@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Louis/Scene/MainMenuNew.unity
+    guid: 70a3af2b58bdd9c40818ed77acf3621c
+  - enabled: 1
+    path: Assets/Louis/Scene/RootsScene.unity
+    guid: 1fb3dd434f8118d4181a575d67f518d8
+  - enabled: 1
+    path: Assets/Louis/Scene/CreditScene.unity
+    guid: 4f8915173273ed34dad04165bf646d07
   m_configObjects: {}

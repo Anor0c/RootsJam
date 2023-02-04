@@ -11,8 +11,8 @@ public class TestSpline : MonoBehaviour
     Spline targetSpline;
     int lastPoint => targetSpline.GetPointCount() - 1;
     int lastFixedPoint => targetSpline.GetPointCount() - 2;
-    
 
+    
     float truetotaldistance;
     bool isDead = false;
     //public int pointLimit;
@@ -27,6 +27,7 @@ public class TestSpline : MonoBehaviour
         var SplineController = GetComponent<SpriteShapeController>();
         targetSpline = SplineController.spline;
         targetSpline.SetTangentMode(1, ShapeTangentMode.Continuous);
+        
     }
 
     // Update is called once per frame
@@ -67,12 +68,11 @@ public class TestSpline : MonoBehaviour
         targetSpline.SetPosition(lastPoint, newPosition);
     }
 
-    private void OnDestroy()
-    {
-        
-    }
+    
+   
     private void Death()
-    {
+    {   
+
         Debug.Log("Camarche");
         //activate death Head
         //DestroyLivingHead
@@ -80,7 +80,8 @@ public class TestSpline : MonoBehaviour
         //Spawn
         //targetSpline.Clear();
         OnDeath.Invoke();
-        
+
+
 
     }
     /*public void AddDistance(float distanceToAdd)

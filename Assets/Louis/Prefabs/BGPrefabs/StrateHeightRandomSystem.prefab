@@ -46,3 +46,8 @@ MonoBehaviour:
   strate:
     m_IsOpenEnded: 0
     m_ControlPoints: []
+  pointNumber: 7
+  minDepth: 18.5
+  minTangent: -3
+  maxDepth: 22
+  maxTangent: 3

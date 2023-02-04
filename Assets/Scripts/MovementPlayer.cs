@@ -86,21 +86,24 @@ public class MovementPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "water")
+        if (collision.gameObject.tag == "water")
         {
             datar.currentPointLimit += 2;
             datar.currentRessource += 1;
+            fogOfWar.MakeHole(collision.gameObject.transform.position, datar.currentSightDistance);
             //collision.GetComponent<SpriteRenderer>().maskInteraction;
         }
-        if (collision.tag == "mushrooms")
+        if (collision.gameObject.tag == "mushrooms")
         {
             datar.currentSightDistance += 0.5f;
             datar.currentRessource += 1;
+            fogOfWar.MakeHole(collision.gameObject.gameObject.transform.position, datar.currentSightDistance);
         }
-        if (collision.tag == "azote")
+        if (collision.gameObject.tag == "azote")
         {
             datar.currentTurnSpeed += 2f;
             datar.currentRessource += 1;
+            fogOfWar.MakeHole(collision.gameObject.gameObject.transform.position, datar.currentSightDistance);
         }
     }
 

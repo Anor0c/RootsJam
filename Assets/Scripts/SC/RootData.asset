@@ -18,11 +18,11 @@ MonoBehaviour:
   currentTurnSpeed: 50
   pointLimit: 5
   currentPointLimit: 5
-  sightDistance: 0.4
-  currentSightDistance: 0.4
+  sightDistance: 0.5
+  currentSightDistance: 0.5
   ressource: 0
   currentRessource: 0
-  currentSegmentDistance: 0
-  SegmentDistance: 0
+  currentSegmentDistance: 10
+  SegmentDistance: 10
   finalDistance: 0
-  currentFinalDistance: 0
+  currentFinalDistance: 50

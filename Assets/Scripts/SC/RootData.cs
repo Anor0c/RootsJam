@@ -28,6 +28,7 @@ public class RootData : ScriptableObject
     [Header("FogOfWar")]
     public float sightDistance;
     [HideInInspector] public float currentSightDistance;
+    //public FogOfWar fogOfWar;
 
     [Header("Score")]
     public int ressource;
@@ -37,7 +38,9 @@ public class RootData : ScriptableObject
     public int finalDistance;
     [HideInInspector] public int currentFinalDistance;
 
-   [Header("SpawnValue")]
-   public Vector3
+
+
+
+
 
 }

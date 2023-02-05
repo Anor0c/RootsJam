@@ -16,8 +16,8 @@ MonoBehaviour:
   currentSpeed: 3
   turnSpeed: 50
   currentTurnSpeed: 50
-  pointLimit: 5
-  currentPointLimit: 5
+  pointLimit: 10
+  currentPointLimit: 10
   sightDistance: 0.5
   currentSightDistance: 0.5
   ressource: 0

@@ -21,7 +21,7 @@ public class BGMusicScript : MonoBehaviour
 
     public void GameMusic()
     {
-        gameMusic.volume = 1;
+        gameMusic.volume = 0.3f;
         menuMusic.volume = 0;
     }
     public void MenuMusic()

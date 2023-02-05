@@ -103,20 +103,20 @@ public class MovementPlayer : MonoBehaviour
             datar.currentPointLimit += 2;
             datar.currentRessource += 1;
             Debug.Log("c2lo");
-            fogOfWar.MakeHole(collision.gameObject.transform.position, datar.currentSightDistance);
-            //collision.GetComponent<SpriteRenderer>().maskInteraction;
+            fogOfWar.MakeHole(collision.gameObject.transform.position, (datar.sightDistance*3));
+            Debug.Log("PointLimit");
         }
         if (collision.gameObject.tag == "mushrooms")
         {
             datar.currentSightDistance += 0.5f;
             datar.currentRessource += 1;
-            fogOfWar.MakeHole(collision.gameObject.gameObject.transform.position, datar.currentSightDistance);
+            fogOfWar.MakeHole(collision.gameObject.transform.position, (datar.sightDistance*3));
         }
         if (collision.gameObject.tag == "azote")
         {
             datar.currentTurnSpeed += 2f;
             datar.currentRessource += 1;
-            fogOfWar.MakeHole(collision.gameObject.gameObject.transform.position, datar.currentSightDistance);
+            fogOfWar.MakeHole(collision.gameObject.transform.position, (datar.sightDistance*3));
         }
     }
 

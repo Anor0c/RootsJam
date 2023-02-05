@@ -43,3 +43,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04efb65383b18ff45ad9916f4a288ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interractibleArray:
+  - {fileID: 2658300255637606348, guid: 7e721012357d9744793137e50ca4d1d1, type: 3}
+  - {fileID: 2658300255637606348, guid: 7e721012357d9744793137e50ca4d1d1, type: 3}
+  - {fileID: 2658300255637606348, guid: 7e721012357d9744793137e50ca4d1d1, type: 3}
+  - {fileID: 2658300255637606348, guid: 7e721012357d9744793137e50ca4d1d1, type: 3}
+  - {fileID: 211135094716087622, guid: 06f7e2c11f07531409557695d7528d0b, type: 3}
+  - {fileID: 211135094716087622, guid: 06f7e2c11f07531409557695d7528d0b, type: 3}
+  - {fileID: 211135094716087622, guid: 06f7e2c11f07531409557695d7528d0b, type: 3}
+  - {fileID: 211135094716087622, guid: 06f7e2c11f07531409557695d7528d0b, type: 3}
+  - {fileID: 5471407609310913336, guid: d276a3f4a5e5bac4e87c1eff3eac011f, type: 3}
+  - {fileID: 5471407609310913336, guid: d276a3f4a5e5bac4e87c1eff3eac011f, type: 3}
+  - {fileID: 8724074489133328065, guid: c4287719c78c7994980837d9323efb78, type: 3}
+  - {fileID: 8724074489133328065, guid: 6f4b45ec9e6a1af4bbc77f0e89c09175, type: 3}
+  - {fileID: 8724074489133328065, guid: 406c5c5dbfe01fa43a271963fc4800ba, type: 3}
+  - {fileID: 8724074489133328065, guid: 30844f6a8cd09d74f8ced3e7e08d5913, type: 3}
+  - {fileID: 8724074489133328065, guid: 5b7215357ef1c484895d4f008ea6e6a8, type: 3}
+  - {fileID: 8724074489133328065, guid: 6bcc5f609301d8d4fa7b2629f31b0e8e, type: 3}
+  minDepth: 0
+  maxDepth: 38
+  minWidth: -18
+  maxWidth: 18
+  biomeNumberInScene: 35
+  distanceBetweenSpawn: 4

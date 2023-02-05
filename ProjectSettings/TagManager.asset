@@ -10,6 +10,7 @@ TagManager:
   - azote
   - mushrooms
   - water
+  - Confiner
   layers:
   - Default
   - TransparentFX

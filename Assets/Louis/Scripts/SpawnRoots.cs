@@ -6,13 +6,17 @@ public class SpawnRoots : MonoBehaviour
 {
     public RootData datar;
     public GameObject root;
-    public Camera cineCam;
+
+    public int lifeCounter=2;
     
     public void OnSpawn()
     {
-        //DestroyActor()
-        //Debug.Log(transform.position);
+        Debug.Log("spawn");
+        if (lifeCounter <= 0)
+            return;
+
         Instantiate(root, transform.position, Quaternion.identity);
-        //cineCam.GetComponent<CinemachineVirtualCamera>().Follow;
+        lifeCounter--;
+
     }
 }

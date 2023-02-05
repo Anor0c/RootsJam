@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.U2D;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class MovementPlayer : MonoBehaviour
 {
@@ -15,18 +16,23 @@ public class MovementPlayer : MonoBehaviour
     Vector2 direction;
 
     bool isMoving = false;
+    bool isAlive = true;
     float troncondistance;
 
     [SerializeField] float maxDistancePerPoint;
     private TestSpline splineRef;
 
     //FogOfWar
-    public FogOfWar fogOfWar;
+    [SerializeField] FogOfWar fogOfWar;
     public Transform secondaryFogOfWar;
     [Range(0, 5)]
     public float sightDistance;
     public float checkInterval;
     public RootData datar;
+
+    [SerializeField] Sprite sleepyHead;
+    SpriteRenderer _spriteHead;
+    public CinemachineVirtualCamera cam;
 
     private void Awake()
     {
@@ -37,6 +43,8 @@ public class MovementPlayer : MonoBehaviour
     {
         //UpdateMoveSpeed();
         splineRef = GetComponentInParent<TestSpline>();
+        _spriteHead = GetComponent<SpriteRenderer>();
+        fogOfWar = FindObjectOfType<FogOfWar>();
         StartCoroutine(CheckFogOfWar(checkInterval));
         secondaryFogOfWar.localScale = new Vector2(sightDistance, sightDistance) * 10f;
     }
@@ -44,6 +52,10 @@ public class MovementPlayer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!isAlive)
+        {
+            return;
+        }
         if (!isMoving)
         {
             return;
@@ -119,6 +131,10 @@ public class MovementPlayer : MonoBehaviour
 
     public void Die()
     {
-        Destroy(this.gameObject);
+        _spriteHead.sprite = sleepyHead;
+        rb2D.velocity = Vector2.zero;
+        cam.Priority = 2;
+        isAlive = false;
+        //Destroy(this.gameObject);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SpawnRoots : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SpawnRoots : MonoBehaviour
     public GameObject root;
 
     public int lifeCounter=2;
+    public UnityEvent onGameOver;
 
     private void Start()
     {
@@ -17,10 +19,15 @@ public class SpawnRoots : MonoBehaviour
     {
         Debug.Log("spawn");
         if (lifeCounter <= 0)
-            return;
-
-        Instantiate(root, transform.position, Quaternion.identity);
-        lifeCounter--;
-
+            GameOver();
+        else
+        {
+            Instantiate(root, transform.position, Quaternion.identity);
+            lifeCounter--;
+        }
+    }
+    public void GameOver()
+    {
+        onGameOver.Invoke();
     }
 }

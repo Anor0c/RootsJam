@@ -137,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3289386390172757785}
   - component: {fileID: 3289386390172757786}
+  - component: {fileID: 7324032758513743542}
   m_Layer: 0
   m_Name: BGMusicMaster
   m_TagString: Untagged
@@ -174,6 +175,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMusic: {fileID: 3289386389236453315}
   menuMusic: {fileID: 3289386390194984614}
+  musiqueArray: []
+--- !u!114 &7324032758513743542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289386390172757787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebb45325866a1a478b1f12f81aef343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2f1ce10ce007573458c1ef4f30db5130, type: 2}
+  gameEventCallback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3289386390172757786}
+        m_TargetAssemblyTypeName: BGMusicScript, Assembly-CSharp
+        m_MethodName: MenuMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3289386390194984615
 GameObject:
   m_ObjectHideFlags: 0

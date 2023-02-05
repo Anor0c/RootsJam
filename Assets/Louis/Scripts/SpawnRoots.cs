@@ -8,7 +8,11 @@ public class SpawnRoots : MonoBehaviour
     public GameObject root;
 
     public int lifeCounter=2;
-    
+
+    private void Start()
+    {
+        OnSpawn();
+    }
     public void OnSpawn()
     {
         Debug.Log("spawn");

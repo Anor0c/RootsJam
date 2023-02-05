@@ -6,10 +6,16 @@ using UnityEngine.Audio;
 public class BGMusicScript : MonoBehaviour
 {
     public AudioSource gameMusic, menuMusic;
+    [SerializeField] BGMusicScript[] musiqueArray;
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(this);
+        musiqueArray= FindObjectsOfType<BGMusicScript>();
+        if (musiqueArray.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
 
     }
 

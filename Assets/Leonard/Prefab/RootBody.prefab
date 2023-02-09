@@ -218,7 +218,6 @@ Transform:
   m_Children:
   - {fileID: 1301124163}
   - {fileID: 2321193749965501592}
-  - {fileID: 7301595336217519483}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -423,6 +422,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8765036268447223127}
+  - {fileID: 7301595336217519483}
   m_Father: {fileID: 2321193749810670407}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -531,6 +531,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2D: {fileID: 2321193749965501605}
   mousePosition: {x: 0, y: 0}
+  isMoving: 0
+  isAlive: 1
   maxDistancePerPoint: 3
   fogOfWar: {fileID: 0}
   secondaryFogOfWar: {fileID: 8765036268447223127}
@@ -589,12 +591,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3735361445795281343}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2321193749810670407}
-  m_RootOrder: 2
+  m_Father: {fileID: 2321193749965501592}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &791267674810901248
 SpriteRenderer:

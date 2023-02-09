@@ -15,8 +15,8 @@ public class MovementPlayer : MonoBehaviour
 
     Vector2 direction;
 
-    bool isMoving = false;
-    bool isAlive = true;
+    [SerializeField]bool isMoving = false;
+    [SerializeField]bool isAlive = true;
     float troncondistance;
 
     [SerializeField] float maxDistancePerPoint;
@@ -43,7 +43,7 @@ public class MovementPlayer : MonoBehaviour
     {
         //UpdateMoveSpeed();
         splineRef = GetComponentInParent<TestSpline>();
-        _spriteHead = GetComponent<SpriteRenderer>();
+        _spriteHead = GetComponentInChildren<SpriteRenderer>();
         fogOfWar = FindObjectOfType<FogOfWar>();
         StartCoroutine(CheckFogOfWar(checkInterval));
         secondaryFogOfWar.localScale = new Vector2(sightDistance, sightDistance) * 10f;
@@ -53,30 +53,37 @@ public class MovementPlayer : MonoBehaviour
     void FixedUpdate()
     {
         if (!isAlive)
-            return;
-
-        if (!isMoving)
-            return;
-
-        //Get Mouse Position
-        mousePosition = Mouse.current.position.ReadValue();
-        //Debug.Log(mousePosition);
-        var mousePosition3 = new Vector3(mousePosition.x, mousePosition.y, 10);
-        var worldpos = Camera.main.ScreenToWorldPoint(mousePosition3);
-        //direction
-        direction = new Vector2(worldpos.x - transform.position.x, worldpos.y - transform.position.y);
-        //RB2D move and rotate
-        float angle = Vector2.SignedAngle(Vector2.down, direction);
-        Vector3 targetRotation = new Vector3(0, 0, angle);
-        rb2D.MoveRotation(Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), datar.currentTurnSpeed * Time.fixedDeltaTime));
-
-        rb2D.velocity = -transform.up * datar.currentSpeed;
-        splineRef.MoveLastPoint(rb2D.position);
-        troncondistance += rb2D.velocity.magnitude * Time.fixedDeltaTime;
-        if (troncondistance > maxDistancePerPoint)
         {
-            splineRef.DistanceMet(rb2D.position);
-            troncondistance = 0;
+            return;
+        }
+
+        else if (!isMoving)
+        {
+            return;
+        }
+
+        else
+        {
+            //Get Mouse Position
+            mousePosition = Mouse.current.position.ReadValue();
+            //Debug.Log(mousePosition);
+            var mousePosition3 = new Vector3(mousePosition.x, mousePosition.y, 10);
+            var worldpos = Camera.main.ScreenToWorldPoint(mousePosition3);
+            //direction
+            direction = new Vector2(worldpos.x - transform.position.x, worldpos.y - transform.position.y);
+            //RB2D move and rotate
+            float angle = Vector2.SignedAngle(Vector2.down, direction);
+            Vector3 targetRotation = new Vector3(0, 0, angle);
+            rb2D.MoveRotation(Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), datar.currentTurnSpeed * Time.fixedDeltaTime));
+
+            rb2D.velocity = -transform.up * datar.currentSpeed;
+            splineRef.MoveLastPoint(rb2D.position);
+            troncondistance += rb2D.velocity.magnitude * Time.fixedDeltaTime;
+            if (troncondistance > maxDistancePerPoint)
+            {
+                splineRef.DistanceMet(rb2D.position);
+                troncondistance = 0;
+            }
         }
     }
 

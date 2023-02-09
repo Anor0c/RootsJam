@@ -53,13 +53,11 @@ public class MovementPlayer : MonoBehaviour
     void FixedUpdate()
     {
         if (!isAlive)
-        {
             return;
-        }
+
         if (!isMoving)
-        {
             return;
-        }
+
         //Get Mouse Position
         mousePosition = Mouse.current.position.ReadValue();
         //Debug.Log(mousePosition);
@@ -68,11 +66,11 @@ public class MovementPlayer : MonoBehaviour
         //direction
         direction = new Vector2(worldpos.x - transform.position.x, worldpos.y - transform.position.y);
         //RB2D move and rotate
-        float angle = Vector2.SignedAngle(Vector2.right, direction);
+        float angle = Vector2.SignedAngle(Vector2.down, direction);
         Vector3 targetRotation = new Vector3(0, 0, angle);
         rb2D.MoveRotation(Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), datar.currentTurnSpeed * Time.fixedDeltaTime));
 
-        rb2D.velocity = transform.right * datar.currentSpeed;
+        rb2D.velocity = -transform.up * datar.currentSpeed;
         splineRef.MoveLastPoint(rb2D.position);
         troncondistance += rb2D.velocity.magnitude * Time.fixedDeltaTime;
         if (troncondistance > maxDistancePerPoint)
@@ -80,16 +78,7 @@ public class MovementPlayer : MonoBehaviour
             splineRef.DistanceMet(rb2D.position);
             troncondistance = 0;
         }
-
-
-
-
     }
-
-    /*private void UpdateMoveSpeed()
-    {
-        datar.currentSpeed = Mathf.Sqrt(datar.currentSpeed * 3);
-    }*/
 
     public void StartMoving()
     {
@@ -135,6 +124,5 @@ public class MovementPlayer : MonoBehaviour
         rb2D.velocity = Vector2.zero;
         cam.Priority = 2;
         isAlive = false;
-        //Destroy(this.gameObject);
     }
 }

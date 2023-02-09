@@ -9,8 +9,6 @@ using Cinemachine;
 public class MovementPlayer : MonoBehaviour
 {
     public Rigidbody2D rb2D;
-    //public float moveSpeed;
-    //public float turnSpeed;
     public Vector2 mousePosition;
 
     Vector2 direction;

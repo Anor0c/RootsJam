@@ -8,6 +8,8 @@ public class StayInCam : MonoBehaviour
     Rigidbody2D r2D;
     GameObject rootHead;
     public UnityEvent stopMoveX, stopMoveY;
+
+    [SerializeField] float maxPosY, minPosY, maxPosX, minPosX;
     void Start()
     {
         r2D = GetComponent<Rigidbody2D>();
@@ -15,13 +17,13 @@ public class StayInCam : MonoBehaviour
     }
 
 
-    void Update()
+    void LateUpdate()
     {
-        if (rootHead.transform.position.y >= 3 || rootHead.transform.position.y<=53)
+        if (rootHead.transform.position.y <= minPosY || rootHead.transform.position.y>=maxPosY)
         {
             stopMoveY.Invoke();
         }
-        if (rootHead.transform.position.x>=-20|| rootHead.transform.position.x <= 20)
+        if (rootHead.transform.position.x<=minPosX|| rootHead.transform.position.x >= maxPosX)
         {
             stopMoveX.Invoke(); 
         }

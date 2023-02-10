@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.U2D;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
@@ -129,5 +126,15 @@ public class MovementPlayer : MonoBehaviour
         rb2D.velocity = Vector2.zero;
         cam.Priority = 2;
         isAlive = false;
+    }
+    public void StopMoveX()
+    {
+        rb2D.velocity = new Vector2(0, rb2D.velocity.y);
+        Debug.Log("StopXXX");
+    }
+    public void StopMoveY()
+    {
+        rb2D.velocity = new Vector2(rb2D.velocity.x,0);
+        Debug.Log("StopYYY");
     }
 }

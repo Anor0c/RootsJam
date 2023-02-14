@@ -1,31 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class StayInCam : MonoBehaviour
 {
     Rigidbody2D r2D;
-    GameObject rootHead;
-    public UnityEvent stopMoveX, stopMoveY;
+    public UnityEvent<Vector2> StopMove;
 
-    [SerializeField] float maxPosY, minPosY, maxPosX, minPosX;
+    [SerializeField]  float maxPosY, minPosY, maxPosX, minPosX;
     void Start()
     {
         r2D = GetComponent<Rigidbody2D>();
-        rootHead = r2D.gameObject;
     }
 
 
-    void LateUpdate()
+    void FixedUpdate()
     {
-        if (rootHead.transform.position.y <= minPosY || rootHead.transform.position.y>=maxPosY)
+        if (r2D.position.x <= minPosX )
         {
-            stopMoveY.Invoke();
+            StopMove.Invoke(Vector2.left);
+            Debug.Log("hit left");
         }
-        if (rootHead.transform.position.x<=minPosX|| rootHead.transform.position.x >= maxPosX)
+        if ( r2D.position.x >= maxPosX )
         {
-            stopMoveX.Invoke(); 
+            StopMove.Invoke(Vector2.right);
+            Debug.Log("hit right");
+        }
+        if ( r2D.position.y <= minPosY )
+        {
+            StopMove.Invoke(Vector2.down);
+            Debug.Log("hit down");
+        }
+        if ( r2D.position.y >= maxPosY)
+        {
+            StopMove.Invoke(Vector2.up);
+            Debug.Log("hit up");
         }
     }
 }

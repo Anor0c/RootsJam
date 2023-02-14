@@ -532,6 +532,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2D: {fileID: 2321193749965501605}
   mousePosition: {x: 0, y: 0}
+  isStopX: 0
+  isStopY: 0
   isMoving: 0
   isAlive: 1
   maxDistancePerPoint: 3
@@ -580,28 +582,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f972a4b97d99bef4ab73ab28d10381c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopMoveX:
+  StopMove:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2321193749965501593}
         m_TargetAssemblyTypeName: MovementPlayer, Assembly-CSharp
-        m_MethodName: StopMoveX
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  stopMoveY:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2321193749965501593}
-        m_TargetAssemblyTypeName: MovementPlayer, Assembly-CSharp
-        m_MethodName: StopMoveY
-        m_Mode: 1
+        m_MethodName: StopMove
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -612,8 +599,8 @@ MonoBehaviour:
         m_CallState: 2
   maxPosY: 3
   minPosY: -40
-  maxPosX: 20
-  minPosX: -20
+  maxPosX: 17
+  minPosX: -17
 --- !u!1 &3735361445795281343
 GameObject:
   m_ObjectHideFlags: 0

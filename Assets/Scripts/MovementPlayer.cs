@@ -10,6 +10,9 @@ public class MovementPlayer : MonoBehaviour
 
     Vector2 direction;
 
+    [SerializeField] bool isStopX = false, isStopY = false;
+    [SerializeField] bool boundaryUp, boundaryRight;
+
     [SerializeField]bool isMoving = false;
     [SerializeField]bool isAlive = true;
     float troncondistance;
@@ -71,7 +74,19 @@ public class MovementPlayer : MonoBehaviour
             Vector3 targetRotation = new Vector3(0, 0, angle);
             rb2D.MoveRotation(Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), datar.currentTurnSpeed * Time.fixedDeltaTime));
 
-            rb2D.velocity = -transform.up * datar.currentSpeed;
+            //bloque roothead s'il sort de l'ecran
+             var rootVector= -transform.up * datar.currentSpeed;
+            if (isStopX)
+            {
+                rootVector = new Vector2(0, rootVector.y);
+            }
+
+            if (isStopY)
+            {
+                rootVector = new Vector2(rootVector.x, 0);
+            }
+
+            rb2D.velocity = rootVector;
             splineRef.MoveLastPoint(rb2D.position);
             troncondistance += rb2D.velocity.magnitude * Time.fixedDeltaTime;
             if (troncondistance > maxDistancePerPoint)
@@ -127,14 +142,44 @@ public class MovementPlayer : MonoBehaviour
         cam.Priority = 2;
         isAlive = false;
     }
-    public void StopMoveX()
+    public void StopMove(Vector2 stopDir)
     {
-        rb2D.velocity = new Vector2(0, rb2D.velocity.y);
-        Debug.Log("StopXXX");
-    }
-    public void StopMoveY()
-    {
-        rb2D.velocity = new Vector2(rb2D.velocity.x,0);
-        Debug.Log("StopYYY");
+        Debug.Log("StopDir est"+stopDir);
+
+        if (stopDir.y > 0)
+        {
+            boundaryUp = true;
+        }
+        if (stopDir.x > 0)
+        {
+            boundaryRight = true;
+        }
+
+
+        if (rb2D.velocity.y >= stopDir.y && boundaryUp) 
+        {
+            isStopY = true;
+        }
+        else if (rb2D.velocity.y <= stopDir.y && !boundaryUp)
+        {
+            isStopY = true;
+        }
+        else
+        {
+            isStopY = false;
+        }
+
+        if (rb2D.velocity.x >= stopDir.x && boundaryRight) 
+        {
+            isStopX = true;
+        }
+        else if (rb2D.velocity.x <= stopDir.x && !boundaryRight)
+        {
+            isStopX = true;
+        }
+        else
+        {
+            isStopX = false;
+        }
     }
 }

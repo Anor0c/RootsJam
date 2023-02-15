@@ -11,7 +11,7 @@ public class MovementPlayer : MonoBehaviour
     Vector2 direction;
 
     [SerializeField] bool isStopX = false, isStopY = false;
-    [SerializeField] bool boundaryUp, boundaryRight;
+    [SerializeField] bool boundaryUp, boundaryRight, boundaryDown, boundaryLeft;
 
     [SerializeField]bool isMoving = false;
     [SerializeField]bool isAlive = true;
@@ -36,7 +36,6 @@ public class MovementPlayer : MonoBehaviour
     {
         sightDistance = datar.currentSightDistance;
     }
-    // Start is called before the first frame update
     void Start()
     {
         //UpdateMoveSpeed();
@@ -47,18 +46,15 @@ public class MovementPlayer : MonoBehaviour
         secondaryFogOfWar.localScale = new Vector2(sightDistance, sightDistance) * 10f;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (!isAlive)
-        {
             return;
-        }
+
 
         else if (!isMoving)
-        {
             return;
-        }
+
 
         else
         {
@@ -75,7 +71,7 @@ public class MovementPlayer : MonoBehaviour
             rb2D.MoveRotation(Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), datar.currentTurnSpeed * Time.fixedDeltaTime));
 
             //bloque roothead s'il sort de l'ecran
-             var rootVector= -transform.up * datar.currentSpeed;
+            var rootVector = -transform.up * datar.currentSpeed;
             if (isStopX)
             {
                 rootVector = new Vector2(0, rootVector.y);
@@ -150,17 +146,32 @@ public class MovementPlayer : MonoBehaviour
         {
             boundaryUp = true;
         }
-        if (stopDir.x > 0)
+        else if (stopDir.y < 0)
+        {
+            boundaryDown = true;
+        }
+        else if (stopDir.x > 0)
+        {
+            boundaryLeft = true;
+        }
+        else if (stopDir.x > 0)
         {
             boundaryRight = true;
         }
+        else
+        {
+            boundaryUp = false;
+            boundaryRight = false;
+            boundaryLeft = false;
+            boundaryDown = false;
+        }
 
 
-        if (rb2D.velocity.y >= stopDir.y && boundaryUp) 
+        if (rb2D.velocity.y >= 0 && boundaryUp) 
         {
             isStopY = true;
         }
-        else if (rb2D.velocity.y <= stopDir.y && !boundaryUp)
+        else if (rb2D.velocity.y <= 0 && boundaryDown)
         {
             isStopY = true;
         }
@@ -169,11 +180,11 @@ public class MovementPlayer : MonoBehaviour
             isStopY = false;
         }
 
-        if (rb2D.velocity.x >= stopDir.x && boundaryRight) 
+        if (rb2D.velocity.x >= 0 && boundaryRight) 
         {
             isStopX = true;
         }
-        else if (rb2D.velocity.x <= stopDir.x && !boundaryRight)
+        else if (rb2D.velocity.x <= 0 && boundaryLeft)
         {
             isStopX = true;
         }

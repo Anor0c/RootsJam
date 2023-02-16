@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 2321193749965501593}
   - component: {fileID: 4886966175112692650}
   - component: {fileID: 8657883182090609722}
+  - component: {fileID: 8422537982343392274}
   m_Layer: 0
   m_Name: RootHead
   m_TagString: Player
@@ -478,13 +479,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MovementPlayer, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 11400000, guid: 1fd406fa88f13294a81cc3db38783f69, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -534,6 +535,10 @@ MonoBehaviour:
   mousePosition: {x: 0, y: 0}
   isStopX: 0
   isStopY: 0
+  boundaryUp: 0
+  boundaryRight: 0
+  boundaryDown: 0
+  boundaryLeft: 0
   isMoving: 0
   isAlive: 1
   maxDistancePerPoint: 3
@@ -544,6 +549,36 @@ MonoBehaviour:
   datar: {fileID: 11400000, guid: da0287e09e3f32b49a23f2fbea17c6fa, type: 2}
   sleepyHead: {fileID: 21300000, guid: ba69313e028a3fc4180ad32f3bd52c12, type: 3}
   cam: {fileID: 1301124162}
+  OnHeadSpawned:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: e16118c65af22894b9cd57cc227c17c4, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHeadDied:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &4886966175112692650
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -601,6 +636,19 @@ MonoBehaviour:
   minPosY: -40
   maxPosX: 17
   minPosX: -17
+--- !u!114 &8422537982343392274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2321193749965501604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c0217fc100b8f408f0fa55765e3fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  datar: {fileID: 11400000, guid: da0287e09e3f32b49a23f2fbea17c6fa, type: 2}
 --- !u!1 &3735361445795281343
 GameObject:
   m_ObjectHideFlags: 0

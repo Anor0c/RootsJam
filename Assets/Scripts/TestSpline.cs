@@ -6,8 +6,6 @@ using UnityEngine.U2D;
 
 public class TestSpline : MonoBehaviour
 {   
-
-    // Start is called before the first frame update
     Spline targetSpline;
     int lastPoint => targetSpline.GetPointCount() - 1;
     int lastFixedPoint => targetSpline.GetPointCount() - 2;
@@ -15,9 +13,8 @@ public class TestSpline : MonoBehaviour
     
     float truetotaldistance;
     bool isDead = false;
-    //public int pointLimit;
     int pointGenerated;
-    //public GameObject currentRoot;
+
     public UnityEvent OnDeath;
     
     public RootData datar;
@@ -30,11 +27,6 @@ public class TestSpline : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {   
-        
-    }
 
     public void DistanceMet(Vector3 newPosition)
     {
@@ -60,7 +52,6 @@ public class TestSpline : MonoBehaviour
         {
             Death();
         }
-        //
     }
 
     public void MoveLastPoint(Vector3 newPosition)
@@ -72,20 +63,8 @@ public class TestSpline : MonoBehaviour
    
     private void Death()
     {   
-
         Debug.Log("Camarche");
-        //activate death Head
-        //DestroyLivingHead
-        //ChangeColor
-        //Spawn
-        //targetSpline.Clear();
         OnDeath.Invoke();
-
-
-
     }
-    /*public void AddDistance(float distanceToAdd)
-    {
-        truetotaldistance += distanceToAdd;
-    }*/
+
 }

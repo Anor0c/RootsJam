@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 using Cinemachine;
 
 public class MovementPlayer : MonoBehaviour
@@ -13,7 +14,7 @@ public class MovementPlayer : MonoBehaviour
     [SerializeField] bool isStopX = false, isStopY = false;
     [SerializeField] bool boundaryUp, boundaryRight, boundaryDown, boundaryLeft;
 
-    [SerializeField]bool isMoving = false;
+    public bool isMoving = false;
     [SerializeField]bool isAlive = true;
     float troncondistance;
 
@@ -32,6 +33,8 @@ public class MovementPlayer : MonoBehaviour
     SpriteRenderer _spriteHead;
     public CinemachineVirtualCamera cam;
 
+    public UnityEvent OnHeadSpawned;
+
     private void Awake()
     {
         sightDistance = datar.currentSightDistance;
@@ -44,6 +47,7 @@ public class MovementPlayer : MonoBehaviour
         fogOfWar = FindObjectOfType<FogOfWar>();
         StartCoroutine(CheckFogOfWar(checkInterval));
         secondaryFogOfWar.localScale = new Vector2(sightDistance, sightDistance) * 10f;
+        OnHeadSpawned.Invoke();
     }
 
     void FixedUpdate()
@@ -98,30 +102,6 @@ public class MovementPlayer : MonoBehaviour
         isMoving = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "water")
-        {
-            datar.currentPointLimit += 2;
-            datar.currentRessource += 1;
-            Debug.Log("c2lo");
-            fogOfWar.MakeHole(collision.gameObject.transform.position, (datar.sightDistance*3));
-            Debug.Log("PointLimit");
-        }
-        if (collision.gameObject.tag == "mushrooms")
-        {
-            datar.currentSightDistance += 0.5f;
-            datar.currentRessource += 1;
-            fogOfWar.MakeHole(collision.gameObject.transform.position, (datar.sightDistance*3));
-        }
-        if (collision.gameObject.tag == "azote")
-        {
-            datar.currentTurnSpeed += 2f;
-            datar.currentRessource += 1;
-            fogOfWar.MakeHole(collision.gameObject.transform.position, (datar.sightDistance*3));
-        }
-    }
-
     private IEnumerator CheckFogOfWar(float checkInterval)
     {
         while (true)
@@ -137,6 +117,8 @@ public class MovementPlayer : MonoBehaviour
         rb2D.velocity = Vector2.zero;
         cam.Priority = 2;
         isAlive = false;
+        isMoving = false;
+        Destroy(this);
     }
     public void StopMove(Vector2 stopDir)
     {

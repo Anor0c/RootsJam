@@ -8,7 +8,7 @@ public class BruitageColl : MonoBehaviour
     private bool collidedOnce = false;
     Animator animator;
     Collider2D coll;
-    // Start is called before the first frame update
+
     void Start()
     {
         bruitage = GetComponent<AudioSource>();
@@ -22,7 +22,7 @@ public class BruitageColl : MonoBehaviour
         {
             bruitage.Play();
             collidedOnce = true;
-            animator.Play("AnimSonar");
+            //animator.Play("AnimSonar");
             Destroy(coll);
         }
 

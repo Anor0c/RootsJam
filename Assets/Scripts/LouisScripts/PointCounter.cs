@@ -24,8 +24,8 @@ public class PointCounter : MonoBehaviour
     }
     public void AddUpgradePoint()
     {
-        Debug.Log("BonusPoint");
-        pointAmount += pointUpgradeAmount;
+        Debug.Log(pointAmount+pointUpgradeAmount);
+        pointAmount += pointUpgradeAmount ;
     }
     public void SearchForNewHead()
     {

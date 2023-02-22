@@ -24,8 +24,9 @@ public class PointCounter : MonoBehaviour
     }
     public void AddUpgradePoint()
     {
-        Debug.Log(pointAmount+pointUpgradeAmount);
-        pointAmount += pointUpgradeAmount ;
+        // je divise mes points d'upgrade par mon pointMultiplier car il sera annulé par le passage a PointAmount
+        pointIncrement += pointUpgradeAmount/pointMultiplier;
+        Debug.Log(pointAmount);
     }
     public void SearchForNewHead()
     {
@@ -35,5 +36,9 @@ public class PointCounter : MonoBehaviour
     public void CheckIsMoving()
     {
         playerMoving = activeHead.isMoving;
+    }
+    public void StopPointCounter()
+    {
+        playerMoving = false;
     }
 }

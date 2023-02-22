@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,7 +22,7 @@ public class SpawnRoots : MonoBehaviour
         {
             Instantiate(root, transform.position, Quaternion.identity);
             lifeCounter--;
-        }
+        }     
     }
     public void GameOver()
     {

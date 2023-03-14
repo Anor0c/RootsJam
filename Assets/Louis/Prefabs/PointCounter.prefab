@@ -9,10 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4993060433206994218}
-  - component: {fileID: 611580580}
-  - component: {fileID: 611580581}
   - component: {fileID: 611580582}
   - component: {fileID: 611580583}
+  - component: {fileID: 611580580}
+  - component: {fileID: 611580581}
+  - component: {fileID: 3138141387917517873}
+  - component: {fileID: 5089447318208892109}
   m_Layer: 0
   m_Name: PointCounter
   m_TagString: Untagged
@@ -34,6 +36,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &611580582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2719421196451181446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebb45325866a1a478b1f12f81aef343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: e16118c65af22894b9cd57cc227c17c4, type: 2}
+  gameEventCallback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 611580581, guid: 8c0423249be2d69429e5c01c727c60ce, type: 3}
+        m_TargetAssemblyTypeName: PointCounter, Assembly-CSharp
+        m_MethodName: SearchForNewHead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &611580583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2719421196451181446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebb45325866a1a478b1f12f81aef343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1fd406fa88f13294a81cc3db38783f69, type: 2}
+  gameEventCallback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 611580581}
+        m_TargetAssemblyTypeName: PointCounter, Assembly-CSharp
+        m_MethodName: CheckIsMoving
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &611580580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,8 +137,8 @@ MonoBehaviour:
   playerMoving: 0
   pointMultiplier: 0.022222223
   pointUpgradeAmount: 200
-  pointAmount: 0
---- !u!114 &611580582
+  ScoreShown: 0
+--- !u!114 &3138141387917517873
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,7 +166,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &611580583
+--- !u!114 &5089447318208892109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

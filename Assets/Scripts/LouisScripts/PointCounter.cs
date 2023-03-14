@@ -9,9 +9,9 @@ public class PointCounter : MonoBehaviour
     [SerializeField] bool playerMoving;
     [SerializeField] float pointMultiplier;
 
-     float pointIncrement;
+    float pointIncrement;
     [SerializeField] int pointUpgradeAmount;
-    [SerializeField] int pointAmount;
+    [SerializeField] int ScoreShown;
 
     void Update()
     {
@@ -19,14 +19,14 @@ public class PointCounter : MonoBehaviour
             return;
 
         pointIncrement++;
-        pointAmount = Mathf.FloorToInt(pointIncrement * pointMultiplier);
-        pointUI.text = pointAmount + " points";
+        ScoreShown = Mathf.FloorToInt(pointIncrement * pointMultiplier);
+        pointUI.text = ScoreShown + " points";
     }
     public void AddUpgradePoint()
     {
-        // je divise mes points d'upgrade par mon pointMultiplier car il sera annulé par le passage a PointAmount
+        // Dividing UpgradeAmount by Point Multiplier cuz it cancels out line 22
         pointIncrement += pointUpgradeAmount/pointMultiplier;
-        Debug.Log(pointAmount);
+        Debug.Log(ScoreShown);
     }
     public void SearchForNewHead()
     {

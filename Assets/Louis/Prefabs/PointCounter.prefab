@@ -52,7 +52,7 @@ MonoBehaviour:
   gameEventCallback:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 611580581, guid: 8c0423249be2d69429e5c01c727c60ce, type: 3}
+      - m_Target: {fileID: 611580581}
         m_TargetAssemblyTypeName: PointCounter, Assembly-CSharp
         m_MethodName: SearchForNewHead
         m_Mode: 1
@@ -110,7 +110,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 611580581}
         m_TargetAssemblyTypeName: PointCounter, Assembly-CSharp
-        m_MethodName: CheckIsMoving
+        m_MethodName: StopPointCounter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

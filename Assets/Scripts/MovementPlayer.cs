@@ -140,7 +140,7 @@ public class MovementPlayer : MonoBehaviour
         {
             boundaryLeft = true;
         }
-        else if (stopDir.x > 0)
+        else if (stopDir.x < 0)
         {
             boundaryRight = true;
         }

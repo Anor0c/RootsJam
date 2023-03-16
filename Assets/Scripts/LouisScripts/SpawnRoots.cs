@@ -7,7 +7,7 @@ public class SpawnRoots : MonoBehaviour
     public GameObject root;
 
     public int lifeCounter=2;
-    public UnityEvent onGameOver;
+    public UnityEvent onGameOver, onSpawn;
 
     private void Start()
     {
@@ -22,6 +22,7 @@ public class SpawnRoots : MonoBehaviour
         {
             Instantiate(root, transform.position, Quaternion.identity);
             lifeCounter--;
+            onSpawn.Invoke();
         }     
     }
     public void GameOver()

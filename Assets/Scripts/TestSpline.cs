@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.U2D;
@@ -10,8 +9,8 @@ public class TestSpline : MonoBehaviour
     int lastPoint => targetSpline.GetPointCount() - 1;
     int lastFixedPoint => targetSpline.GetPointCount() - 2;
 
-    
-    float truetotaldistance;
+
+    public Vector2 rightTangentPos = new Vector2(1,1);
     bool isDead = false;
     int pointGenerated;
 
@@ -37,8 +36,13 @@ public class TestSpline : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.08f);
                 Debug.Log($"Count : {lastPoint}, position :{newPosition}");
+
                 targetSpline.InsertPointAt(lastPoint, newPosition);
+                targetSpline.SetTangentMode(lastPoint, ShapeTangentMode.Continuous);
+
                 targetSpline.SetTangentMode(lastFixedPoint, ShapeTangentMode.Continuous);
+                targetSpline.SetLeftTangent(lastFixedPoint, rightTangentPos*-1);
+                targetSpline.SetRightTangent(lastFixedPoint, rightTangentPos);
             }
             pointGenerated += 1;
             if (pointGenerated == datar.currentPointLimit)
@@ -59,7 +63,11 @@ public class TestSpline : MonoBehaviour
         targetSpline.SetPosition(lastPoint, newPosition);
     }
 
-    
+    public Vector2 LeftTangentPosition(Vector3 playerDirectionNormalised)
+    {
+        var tangentVector = playerDirectionNormalised;
+        return tangentVector;
+    }
    
     private void Death()
     {   

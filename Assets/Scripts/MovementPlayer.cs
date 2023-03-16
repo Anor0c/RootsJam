@@ -88,10 +88,12 @@ public class MovementPlayer : MonoBehaviour
 
             rb2D.velocity = rootVector;
             splineRef.MoveLastPoint(rb2D.position);
+
             troncondistance += rb2D.velocity.magnitude * Time.fixedDeltaTime;
             if (troncondistance > maxDistancePerPoint)
             {
                 splineRef.DistanceMet(rb2D.position);
+                splineRef.rightTangentPos = splineRef.LeftTangentPosition(rb2D.velocity.normalized);
                 troncondistance = 0;
             }
         }

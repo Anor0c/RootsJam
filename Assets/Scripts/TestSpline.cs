@@ -65,6 +65,7 @@ public class TestSpline : MonoBehaviour
 
     public Vector2 LeftTangentPosition(Vector3 playerDirectionNormalised)
     {
+        //probablement il faudrat retoucher a ce script pour que la spline soit continue en C²
         var tangentVector = playerDirectionNormalised;
         return tangentVector;
     }

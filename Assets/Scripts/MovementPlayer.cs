@@ -8,11 +8,11 @@ public class MovementPlayer : MonoBehaviour
 {
     public Rigidbody2D rb2D;
     public Vector2 mousePosition;
-
-    Vector2 direction;
+    [SerializeField] Vector2 targetDirection;
 
     [SerializeField] bool isStopX = false, isStopY = false;
     [SerializeField] bool boundaryUp, boundaryRight, boundaryDown, boundaryLeft;
+    Vector2 currentDirection;
 
     public bool isMoving = false;
     [SerializeField]bool isAlive = true;
@@ -68,9 +68,9 @@ public class MovementPlayer : MonoBehaviour
             var mousePosition3 = new Vector3(mousePosition.x, mousePosition.y, 10);
             var worldpos = Camera.main.ScreenToWorldPoint(mousePosition3);
             //direction
-            direction = new Vector2(worldpos.x - transform.position.x, worldpos.y - transform.position.y);
+            targetDirection = new Vector2(worldpos.x - transform.position.x, worldpos.y - transform.position.y);
             //RB2D move and rotate
-            float angle = Vector2.SignedAngle(Vector2.down, direction);
+            float angle = Vector2.SignedAngle(Vector2.down, targetDirection);
             Vector3 targetRotation = new Vector3(0, 0, angle);
             rb2D.MoveRotation(Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), datar.currentTurnSpeed * Time.fixedDeltaTime));
 
@@ -96,6 +96,8 @@ public class MovementPlayer : MonoBehaviour
                 splineRef.rightTangentPos = splineRef.LeftTangentPosition(rb2D.velocity.normalized);
                 troncondistance = 0;
             }
+            currentDirection = -transform.up;
+            Debug.DrawLine(-transform.up, Vector3.zero, Color.green );
         }
     }
 
@@ -151,11 +153,11 @@ public class MovementPlayer : MonoBehaviour
         }
 
 
-        if (rb2D.velocity.y >= 0 && boundaryUp) 
+        if (currentDirection.y >= 0 && boundaryUp) 
         {
             isStopY = true;
         }
-        else if (rb2D.velocity.y <= 0 && boundaryDown)
+        else if (currentDirection.y <= 0 && boundaryDown)
         {
             isStopY = true;
         }
@@ -164,11 +166,11 @@ public class MovementPlayer : MonoBehaviour
             isStopY = false;
         }
 
-        if (rb2D.velocity.x >= 0 && boundaryRight) 
+        if (currentDirection.x <= 0 && boundaryRight) 
         {
             isStopX = true;
         }
-        else if (rb2D.velocity.x <= 0 && boundaryLeft)
+        else if (currentDirection.x >= 0 && boundaryLeft)
         {
             isStopX = true;
         }

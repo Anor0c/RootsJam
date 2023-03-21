@@ -10,12 +10,12 @@ public class HealthCounter : MonoBehaviour
     {
         spawner = FindObjectOfType<SpawnRoots>();
         lifeNumber = spawner.lifeCounter;
-        lifeHUD.text = lifeNumber + "Lives Left";
+        lifeHUD.text = lifeNumber + " Lives Left";
     }
 
     public void ChangeLifeHUD()
     {
         lifeNumber--;
-        lifeHUD.text= lifeNumber + "Lives Left";
+        lifeHUD.text= lifeNumber + " Lives Left";
     }
 }
